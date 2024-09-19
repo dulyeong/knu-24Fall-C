@@ -3,7 +3,7 @@
 int sosu(int a);
 
 
-int main() {
+int main_ss() {
 	int num;
 	scanf_s("%d", &num);
 	num = sosu(num);

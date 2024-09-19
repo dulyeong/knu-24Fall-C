@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-int pa(int a);
+int fa(int a);
 
 int main() {
 	int num,ans;
 	scanf_s("%d", &num);
-	ans = pa(num);
+	ans = fa(num);
 	printf("%d! = %d", num, ans);
 	return 0;
 }
 
-int pa(int a) {
+int fa(int a) {
 	int res = 0;
-	if (a == 1)
+	if (a == 1||a==0)
 		return 1;
-	res = a * pa(a - 1);
+	res = a * fa(a - 1);
 	return res;
 }
