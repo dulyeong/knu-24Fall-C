@@ -14,6 +14,6 @@ int fa(int a) {
 	int res = 0;
 	if (a == 1||a==0)
 		return 1;
-	res = a * fa(a - 1);///fgsdda
+	res = a * fa(a - 1);
 	return res;
 }
