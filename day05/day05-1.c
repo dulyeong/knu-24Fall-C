@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main_a() {
 
 	int N;
 	int* snum;
@@ -35,7 +35,10 @@ int main() {
 		max = score[i] > score[i + 1] ? score[i] : score[i + 1];
 		min = score[i] < score[i + 1] ? score[i] : score[i + 1];
 		sum += score[i];
-		sum += score[i + 1];
+		if (i + 1 == N)
+		{
+			sum += score[i + 1];
+		}
 	}
 	
 

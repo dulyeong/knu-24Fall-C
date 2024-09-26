@@ -12,7 +12,7 @@ struct student
 
 
 
-int main_s() {
+int main() {
 	int N;
 	struct student* per;
 	scanf_s("%d", &N);
@@ -29,6 +29,22 @@ int main_s() {
 		printf("%d번째 학생 점수: ", i + 1);
 		scanf_s("%d", &per[i].score);
 	}
+	int max = 0;
+	int min = 1000;
+	int sum = 0;
+	for (int i = 0; i < N - 1; i++)
+	{
+		max = per[i].score > per[i+1].score ? per[i].score : per[i+1].score;
+		min = per[i].score < per[i+1].score ? per[i].score : per[i+1].score;
+		sum += per[i].score;
+		if (i+1==N)
+		{
+			sum += per[i + 1].score;
+		}
+		sum += per[i+1].score;
+	}
+
+	printf("%d %d %d\n", max, min, sum);
 
 	free(per);
 
