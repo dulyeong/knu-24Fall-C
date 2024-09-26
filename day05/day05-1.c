@@ -44,6 +44,8 @@ int main() {
 
 	free(snum);
 	free(score);
+	for (int i = 0; i < N; i++)
+		free(name[i]);
 	free(name);
 	
 	
