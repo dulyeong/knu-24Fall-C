@@ -5,6 +5,7 @@ struct NODE {
 	int data;
 	struct NODE *link;
 };
+struct NODE* head = NULL;
 
 struct NODE* create_node(int data) {
 	struct NODE* new_node = (struct NODE*)malloc(sizeof(struct NODE));
@@ -50,15 +51,26 @@ struct NODE* find_node(int value) {
 int delete_node(int value) {
 	struct NODE* prev = head;
 	struct NODE* cur = head->link;
-
+	while (cur !=NULL)
+	{
+		if (cur->data == value) {
+			prev->link = cur->link;
+			free(cur);
+			return 1;
+		}
+		prev = cur;
+		cur = cur->link;
+	}
+	return 0;
 }
 
-struct NODE* head;
 
-int main() {
+int main_q() {
 
 	head = (struct NODE*)malloc(sizeof(struct NODE));
 	head->link = NULL;
+
+
 	insert_node_last(create_node(1));
 	return 0;
 }
