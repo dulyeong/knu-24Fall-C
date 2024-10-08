@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main_y() {
 	FILE* fp = NULL;
 	fopen_s(&fp, "data.txt", "rt");
 	

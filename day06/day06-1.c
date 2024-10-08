@@ -65,12 +65,20 @@ int delete_node(int value) {
 }
 
 
-int main_q() {
+int main() {
 
 	head = (struct NODE*)malloc(sizeof(struct NODE));
 	head->link = NULL;
 
 
 	insert_node_last(create_node(1));
+	insert_node_last(create_node(2));
+	insert_node_last(create_node(3));
+	insert_node_last(create_node(4));
+	insert_node_last(create_node(5));
+
+	print_nodes();
+	delete_node(3);
+	print_nodes();
 	return 0;
 }
