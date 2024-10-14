@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
+//접근 방식 확인
 int main_aa() 
 {
 	int count_arr = 0;
