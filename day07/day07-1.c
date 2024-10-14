@@ -1,5 +1,5 @@
 #include <stdio.h>
-int main_zxzx(void)
+int main_a(void)
 {
 	int a;
 	scanf_s("%d", &a);
