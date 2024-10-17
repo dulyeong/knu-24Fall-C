@@ -1,21 +1,42 @@
 #include <stdio.h>
 #include <string.h>
 
-//접근 방식 확인
-int main_aa() 
+void reverse(char* a);
+
+int main() 
 {
 	int count_arr = 0;
 	char arr[100];
-	char* parr = arr;
+
 	printf("문자열을 입력하세요 : ");
 	scanf_s("%s", arr, 100);
-	count_arr = strlen(arr);
-	printf("뒤집어진 문자열 : ");
 
-	for (int i = 0; i < count_arr; i++) {
-		printf("%c", *(parr+(count_arr-1)-i));
+	reverse(arr);
+
+	
+
+	printf("%s\n", arr);
+
+
+	return 0;
+}
+
+
+
+void reverse(char* a) {
+	
+	char tmp;
+	char* alp = a;
+	char* ome = a+(strlen(a)-1);
+	while (alp<=ome)
+	{
+		tmp = *alp;
+		*alp= *ome;   ///a 
+		*ome = tmp;
+
+		alp++;
+		ome--;
 	}
 	
 
-	return 0;
 }
