@@ -3,7 +3,7 @@
 
 void reverse(char* a);
 
-int main() 
+int main_wsa() 
 {
 	int count_arr = 0;
 	char arr[100];

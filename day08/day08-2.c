@@ -7,7 +7,7 @@ void fillRandom(int array[SIZE][SIZE]);
 void printArray(int array[SIZE][SIZE]);
 void movePointer(void* array);  //*의 이유 시작주소 ((0,0)의 주소)을 받아왔기 때문?
 								//void 이유 모름
-int main_as()
+int main()
 {
 	int array[SIZE][SIZE];
 
