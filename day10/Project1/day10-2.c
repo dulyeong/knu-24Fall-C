@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 enum rank {
-	Platinum,
-	Gold,
-	Silver
+	Platinum = 1,
+	Gold = 2,
+	Silver = 3
 };
 struct Customer {
 	char* customerName;
@@ -17,7 +17,7 @@ struct Customer {
 };
 struct Customer* head = NULL;
 
-struct Customer* create_node(char *customerName, enum rank Rank, int order_amount,int point) {
+struct Customer* create_node(char* customerName, enum rank Rank, int order_amount, int point) {
 	struct Customer* new_node = (struct Customer*)malloc(sizeof(struct Customer));
 	new_node->customerName = (char*)malloc(50 * sizeof(char));
 	strcpy_s(new_node->customerName, 50, customerName);
@@ -48,43 +48,52 @@ struct Customer* set_priority(struct Customer* new_node) {
 		return head;
 	}
 
-	while (cur->next != NULL) {
-		if (cur->Rank < new_node->Rank) { // rank가 높은 노드를 찾음
-			printf("!!\n");
+	while (cur != NULL) {
+		if (cur->Rank > new_node->Rank) { // rank가 높은 노드를 찾음
+			printf("!!r\n");
+
+			prev = cur;
+			cur = cur->next;
+		}
+		else if (cur->Rank == new_node->Rank && cur->order_amount < new_node->order_amount) {
+			printf("!!o\n");
+			prev = cur;
+			cur = cur->next;
+		}
+		else if (cur->Rank == new_node->Rank && cur->order_amount == new_node->order_amount && cur->point < new_node->point)
+		{
+			printf("!!p\n");
+			prev = cur;
+			cur = cur->next;
+		}
+		else
+		{
+			printf("!!ddddd\n");
+			return cur;
 			break;
 		}
-		else if (cur->Rank == new_node->Rank) {
-			if (cur->order_amount < new_node->order_amount) { // 같은 rank일 경우, 주문량으로 비교
-				printf("!!\n");
-				break;
-			}
-			else if (cur->order_amount == new_node->order_amount) {
-				if (cur->point < new_node->point) { // 주문량도 같으면 포인트로 비교
-					printf("!!\n");
-					break;
-				}
-			}
-		}
-		printf("!!\n");
-		prev = cur;
-		cur = cur->next;
 	}
-	printf("!!\n");
+	printf("retrned\n");
 	return prev;
 }
 
 
 
-
-
 void insert_node_sorted(struct Customer* new_node) {	//
-	
+
 
 	struct Customer* sorted = set_priority(new_node);
-	new_node->prev = sorted;
+
+	//sorted->prev = new_node;
 	new_node->next = sorted->next;
+	new_node->prev = sorted;
+
+	if (sorted->next != NULL)
+		sorted->next->prev = new_node;
+
 	sorted->next = new_node;
-}	
+
+}
 
 
 void print_nodes() {
@@ -94,22 +103,13 @@ void print_nodes() {
 	while (cur != NULL)
 	{
 		count++;
-		printf("%d. %s\n ", count, cur->customerName);
+		printf("%d. %s %d\n ", count, cur->customerName, cur->Rank);
 
 		cur = cur->next;
 	}
 	printf("--------------------\n");
 }
 
-//struct Customer* find_node(int value) {
-//	struct Customer* cur = head->next;
-//	while (cur != NULL)
-//	{
-//		if (cur->data == value) return cur;
-//		cur = cur->next;
-//	}
-//	return NULL;
-//}
 
 int delete_node(char* customerName) {
 	struct Customer* prev = head;
@@ -151,7 +151,7 @@ int main() {
 		switch (way)
 		{
 		case 1:
-			printf("\n고객 성명 : ");	
+			printf("\n고객 성명 : ");
 			scanf_s("%s", customerName, 50);
 			printf("%s의 등급 : ", customerName);
 			scanf_s("%d", &Rank);
@@ -175,7 +175,7 @@ int main() {
 		default:
 			break;
 		}
-		
+
 	}
 
 	return 0;
