@@ -49,31 +49,29 @@ struct Customer* set_priority(struct Customer* new_node) {
 	}
 
 	while (cur != NULL) {
-		if (cur->Rank > new_node->Rank) { // rank가 높은 노드를 찾음
-			printf("!!r\n");
-
-			prev = cur;
-			cur = cur->next;
+		// 새 노드의 순위가 더 높은 경우 (숫자가 더 작은 경우)
+		if (new_node->Rank < cur->Rank) {
+			return prev;
 		}
-		else if (cur->Rank == new_node->Rank && cur->order_amount < new_node->order_amount) {
-			printf("!!o\n");
-			prev = cur;
-			cur = cur->next;
+		// 순위가 같은 경우
+		else if (new_node->Rank == cur->Rank) {
+			// 주문량이 더 많은 경우
+			if (new_node->order_amount > cur->order_amount) {
+				return prev;
+			}
+			// 주문량도 같은 경우
+			else if (new_node->order_amount == cur->order_amount) {
+				// 포인트가 더 많은 경우
+				if (new_node->point > cur->point) {
+					return prev;
+				}
+			}
 		}
-		else if (cur->Rank == new_node->Rank && cur->order_amount == new_node->order_amount && cur->point < new_node->point)
-		{
-			printf("!!p\n");
-			prev = cur;
-			cur = cur->next;
-		}
-		else
-		{
-			printf("!!ddddd\n");
-			return cur;
-			break;
-		}
+		prev = cur;
+		cur = cur->next;
 	}
-	printf("retrned\n");
+
+	// 마지막까지 왔다면 맨 뒤에 삽입
 	return prev;
 }
 
