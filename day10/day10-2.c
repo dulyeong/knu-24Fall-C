@@ -49,19 +49,18 @@ struct Customer* set_priority(struct Customer* new_node) {
 	}
 
 	while (cur != NULL) {
-		// 새 노드의 순위가 더 높은 경우 (숫자가 더 작은 경우)
+
 		if (new_node->Rank < cur->Rank) {
 			return prev;
 		}
-		// 순위가 같은 경우
+
 		else if (new_node->Rank == cur->Rank) {
-			// 주문량이 더 많은 경우
+
 			if (new_node->order_amount > cur->order_amount) {
 				return prev;
 			}
-			// 주문량도 같은 경우
+
 			else if (new_node->order_amount == cur->order_amount) {
-				// 포인트가 더 많은 경우
 				if (new_node->point > cur->point) {
 					return prev;
 				}
@@ -71,7 +70,6 @@ struct Customer* set_priority(struct Customer* new_node) {
 		cur = cur->next;
 	}
 
-	// 마지막까지 왔다면 맨 뒤에 삽입
 	return prev;
 }
 
