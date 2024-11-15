@@ -25,15 +25,6 @@ struct Node* create_node(char* name, int score)			//문자열을 매개변수로 할 땐* �
 	return new_node;
 }
 
-struct Node* last_node() {
-	struct Node* cur = head;
-	while (cur->link != NULL)
-	{
-		cur = cur->link;
-	}
-	return cur;
-}
-
 struct Node* insert_sort_node(int score) {	//지금 입력한 노드의 위치를 설정, 즉 아래 sorted를 설정
 	struct Node* prev = head;				//첫 번째 노드(이전 노드)
 	struct Node* cur = head->link;			//두 번째 노드(지금 노드)
@@ -69,16 +60,6 @@ void print_nodes() {
 	}
 	printf("--------------------\n");
 
-}
-
-struct Node* find_node(int value) {			//활용처가 없음 무엇?
-	struct Node* cur = head->link;
-	while (cur != NULL)
-	{
-		if (cur->score == value) return cur;
-		cur = cur->link;
-	}
-	return NULL;
 }
 
 int delete_node(char* name) {
